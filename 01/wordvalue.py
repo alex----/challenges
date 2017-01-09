@@ -45,6 +45,14 @@ def max_word_value_v2(words=None):
     return sorted_words[0]
 
 
+def max_word_value_v3(words=None):
+    """Calculate the word with the max value, can receive a list
+    of words as arg, if none provided uses default DICTIONARY"""
+    if words is None:
+        words = load_words(DICTIONARY)
+    return max(words, key=calc_word_value)
+
+
 def max_word_value(words=None):
     """Calculate the word with the max value, can receive a list
     of words as arg, if none provided uses default DICTIONARY"""
@@ -55,8 +63,10 @@ def max_word_value(words=None):
     # but requires you know a little more python
     # Still a little slow,
     # precomputing will speed up check sort by assuming we have a 1 to 1 load and sort, not that good an idea
-    return max_word_value_v2(words)
+    # return max_word_value_v2(words)
 
+    # Max max is a littel faster the sorting the while list
+    return max_word_value_v3(words)
 
 if __name__ == "__main__":
     unittest.main(module='test_wordvalue', exit=True)
